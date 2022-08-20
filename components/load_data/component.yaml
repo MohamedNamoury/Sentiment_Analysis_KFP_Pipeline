@@ -1,0 +1,19 @@
+name: Load Data
+description: Load the data from local to google cloud storage .
+
+inputs:
+- {name: DataPath, type: String, description: 'Path for the data you want to load'}
+
+implementation:
+  container:
+    image: gcr.io/quiet-light-250408/first_pipeline/loadData
+    # command is a list of strings (command-line arguments). 
+    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # Here we use the "flow syntax" - comma-separated strings inside square brackets.
+    command: [
+      python, 
+      # Path of the program inside the container
+      src/load_data.py,
+      --DataPath,
+      {inputPath: "AJGT.xlsx"}
+    ]

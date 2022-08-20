@@ -1,0 +1,19 @@
+name: preprocessing
+description: Gets The path of the data that will be processed to be fetched in the training pipeline.
+
+inputs:
+- {name: DataPath, type: String, description: 'Path for the data you want to load'}
+
+implementation:
+  container:
+    image: gcr.io/quiet-light-250408/first_pipeline/preprocess
+    # command is a list of strings (command-line arguments). 
+    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # Here we use the "flow syntax" - comma-separated strings inside square brackets.
+    command: [
+      python, 
+      # Path of the program inside the container
+      src/preprocessing.py,
+      --DataPath,
+      {inputPath: gs://first_pipeline/data/data.xlsx}
+    ]

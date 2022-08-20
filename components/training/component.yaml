@@ -1,0 +1,19 @@
+name: Training
+description: Load the data for training stage.
+
+inputs:
+- {name: DataPath, type: String, description: 'Path for the data you want to load'}
+
+implementation:
+  container:
+    image: gcr.io/quiet-light-250408/first_pipeline/training
+    # command is a list of strings (command-line arguments). 
+    # The YAML language has two syntaxes for lists and you can use either of them. 
+    # Here we use the "flow syntax" - comma-separated strings inside square brackets.
+    command: [
+      python, 
+      # Path of the program inside the container
+      src/training.py,
+      --DataPath,
+      {inputPath: gs://first_pipeline/processed/data_processed.csv}
+    ]

@@ -1,0 +1,10 @@
+google.cloud
+xlrd
+openpyxl
+argparse
+pandas 
+numpy 
+string
+re
+nltk
+sklearn
